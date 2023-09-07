@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import Tasks from './pages/Tasks';
+import Categories from './pages/Categories';
+import Protected from './components/Protected';
+
+
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  console.log(tokenString)
+  const userToken = JSON.parse(tokenString);
+  console.log(userToken)
+  return userToken?.token
+}
 
 function App() {
+
+  const token = getToken();
+  console.log(token)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/login' element={<Login Token={token} setToken={setToken}/>}/>
+        <Route path='/tasks' element={<Protected token={token}><Tasks/></Protected>}/>
+        <Route path='/categories' element={<Categories/>}/>
+      </Routes>
     </div>
   );
 }

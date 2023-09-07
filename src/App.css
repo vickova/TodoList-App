@@ -1,38 +1,266 @@
-.App {
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+    background-color: rgb(234, 241, 244);
+}
+body::-webkit-scrollbar{
+  width: 5px;
+}
+body::-webkit-scrollbar-track{
+  box-shadow: inset 0 0 6px rgbs(0, 0, 0, 0.3);
+}
+body::-webkit-scrollbar-thumb{
+  background-color: rgba(255, 3, 49, 0.386);
+  outline: 1px solid rgba(255, 3, 49, 0.7);
+  border-radius: 10px;
+}
+.home{
+  height: fit-content;
+  position: relative;
+  padding: 1rem;
+  background-color: rgb(234, 241, 244);
+  margin: 0 auto;
+}
+
+.home-image{
+  display: flex;
+  justify-content: right;
+}
+.signup .home-image, .login .homeimage, .home .home-image{
+  position: relative;
+  top:-50px;
+}
+a{
+  text-decoration: none;
+}
+.home h2{
+  text-align: center;
+  margin: 1rem 0;
+  color: rgb(58, 57, 57);
+}
+.signup h2, .login h2{
+  color: rgb(3, 131, 159);
+  text-align: left;
+}
+.home p{
+  font-weight: 500;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.signup p, .login p{
+  font-size: .8rem;
+  text-align: center;
+  font-weight: 700;
+  color:rgb(92, 89, 89);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.signup p span, .login p span{
+  color: rgba(255, 3, 49, 0.7);
+  cursor: pointer;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.circle-cover{
+  display: absolute;
+  height: fit-content;
+  height: 200px;
+}
+.circle{
+  height: 150px;
+  width: 150px;
+  background-color: rgb(3, 131, 159);
+  border-radius: 50%;
+  position: relative;
+  opacity: .5;
+}
+.first-circle{
+  left: -90px;
+  top:-15px;
+}
+.second-circle{
+  top: -250px;
+  left: -25px;
+}
+.all-button{
+  padding: .5rem 1rem;
+  background-color: rgba(255, 3, 49, 0.7);
+  border-radius: 5px;
+  border: none;
+  color: rgb(252, 249, 249);
+  width: 80%;
+  cursor: pointer;
+}
+.home-button{
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin: 1rem 0;
+}
+.home-button a{
+  width: 80%;
+  cursor: pointer;
+}
+.home-button a button{
+  width: 100%;
+}
+form{
+  display: flex;
+  justify-content: center;
+
+}
+form div{
+  width: 100%;
+}
+form input{
+  margin: 1.5rem 0;
+  font-size: 1rem;
+}
+input{
+  display:block;
+  width: 100%;
+  border: none;
+  background-color: rgba(217, 209, 211, 0.6);
+  border-radius: 5px;
+  outline: none;
+  padding:.6rem 1rem;
+  font-weight: 500;
+  color: rgb(92, 89, 89);
+}
+input::placeholder{
+  color: rgb(144, 144, 144);
+}
+.tasks{
+  height: fit-content;
+  position: relative;
+  padding: 1rem;
+  margin: 0 auto;
+}
+/* .task-cover{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap:.5rem;
+} */
+.single-task{
+  background-color: rgb(251, 252, 252);
+  padding: 1rem;
+  border-radius: 10px;
+  margin: .5rem 0;
+  transition: all 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.single-task:hover{
+  padding: 1rem 1.5rem;
+}
+.toggle{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.toggle img{
+  width: 20px;
+  height: 20px;
+}
+.toggle-cover{
+
+}
+.toggle h3{
+  font-weight: 500;
+}
+.category, .dates, .buttons{
+  display: flex;
+  align-items: center;
+  gap:1rem;
+  margin: .8rem 0;
+}
+.category h4{
+  background-color: rgba(255, 3, 49, 0.7);
+  color: rgb(234, 241, 244);
+  font-weight: 400;
+  padding:.5rem;
+  border-radius: 5px;
+}
+.buttons{
+  justify-content: space-between;
+}
+.buttons button{
+  padding: .5rem 1rem;
+  background-color: rgba(239, 234, 235, 0.7);
+  border-radius: 5px;
+  border: none;
+  color: rgb(116, 115, 115);
+  cursor: pointer;
+}
+.action-button{
+  display: flex;
+  gap:1.5rem;
+}
+.action-button img{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.buttons .completed{
+  background-color: rgb(87, 83, 83);
+  color:rgb(236, 236, 221);
+}
+.dates h4{
+  color: rgb(59, 59, 59);
+  font-weight: 500;
+}
+.buttons{}
+.intro{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+.intro img{
+  width: 25px;
+  height: 25px;
+}
+.intro h4{
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.intro h4:hover{
+  background: url('./images/power.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
+  transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.intro h2{
+  width: 50%;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (min-width:420px){
+  .home{
+    width: 45%;
+    box-shadow: 2px 2px 5px 5px rgb(198, 234, 246);
+    border-radius: 10px;
+    padding:0 3rem 1.5rem 3rem;
+    margin: 2rem auto;
+    overflow: hidden;
   }
-  to {
-    transform: rotate(360deg);
+  .tasks{
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
   }
+  .circle{
+    width: 200px;
+    height: 200px;
+  }
+  .signup .home-image, .login .homeimage, .home .home-image{
+    top:-100px;
+  }
+  .first-circle{
+    left: -150px;
+    top:-10px;
+  }
+  .second-circle{
+    top: -300px;
+    left: -50px;
+  }
+ 
 }
