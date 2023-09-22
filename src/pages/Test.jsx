@@ -3,35 +3,58 @@ import Circle from '../components/Circle';
 import Button from '../components/Button';
 import Homeimage from '../images/todo8.png';
 import { Link, useNavigate, redirect } from 'react-router-dom';
-import { getToken, setUserSession } from '../utils/common';
-import Loader from '../components/Loader';
-import axios from 'axios';
+import { setUserSession } from '../utils/common';
 
 
 
-const Login = () => {
+const Login = ({Token,setToken, auth, setAuth}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const [loading, setLoading] = useState(false)
-  // const [token,setToken] = useState('');
+  const [pathname,setPathname] = useState('');
+  
   const navigate = useNavigate()
 
+  async function loginUser(credentials) {
+    return fetch('https://todo-list-api-8vwz.onrender.com/api/v1/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
+      .catch(err => console.log(err))
+   }
 
-  const handleSubmit = async(e)=>{
-    setLoading(true);
-    const token = getToken()
+  const handleSubmit = async e => {
     e.preventDefault();
-    console.log('running oooo')
+    console.log('running ooo')
+    if(email || password){
+    const token = await loginUser({
+      email,
+      password
+    });
+ 
+    setToken(token);
+    setAuth(token);
     console.log(token)
-    axios.post('https://todo-list-api-8vwz.onrender.com/api/v1/auth/login', {email, password})
-    .then((res)=>{
-      setUserSession(res.data.token, res.data.user);
+    console.log('set')
+    if(token){
+      console.log('tasks')
       console.log(token)
-      // console.log(res.data);
-      console.log(getToken())
-      navigate('/tasks');
-      setLoading(false)
-    }).catch((err)=>console.log('Something went wrong', err.message))
+      setAuth(token);
+      
+    }
+    else{
+      console.log('login')
+      navigate('/login');
+    }
+  }else{
+  console.log('Email and Password cannot be empty')
+  }
+
+  }
+  const SubmitButtonHandler = ()=>{
     
   }
   return (
@@ -42,14 +65,12 @@ const Login = () => {
       </div>
       <h2>Welcome Back.</h2>
       <form action="" onSubmit={handleSubmit}>
-        <div className='inner'>
+        <div>
           <input type="email" placeholder='Email Address' onChange={(e)=>setEmail(e.target.value)}/>
           <input type="password" placeholder='Password' onChange={(e)=>setPassword(e.target.value)}/>
           <div className='home-button'>
             {/* <Link to={`${Token?'/tasks':'/login'}`}> */}
-            <button className="submit-btn" onClick={handleSubmit}>
-              {!loading ? 'Login' : <Loader/>}
-            </button>
+            <Button text='Sign In'/>
             {/* </Link> */}
           </div>
         </div>

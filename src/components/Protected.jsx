@@ -1,16 +1,13 @@
 import React from 'react'
 import Login from '../pages/Login';
 import { Navigate, useLocation } from 'react-router-dom';
+import { getToken } from '../utils/common';
 
-const Protected = ({token, children}) => {
-  console.log(token)
-  console.log('Heyy')
-  let location = useLocation();
-
-  if(!token) {
-      return <Navigate to="/login" state={{ from: location}} replace />
-  }
-  return children
+const Protected = ({children}) => {
+  const token = getToken();
+  let flag = false;
+  token?flag = true:flag=true
+  return flag;
 }
 
 export default Protected
