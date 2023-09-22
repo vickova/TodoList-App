@@ -6,7 +6,6 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import reducer from './redux/reducers';
 import axios from 'axios';
 import { getToken } from './utils/common';
 
@@ -31,13 +30,10 @@ function (error){
 )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-    <Provider store={store}>
     <App />
-    </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

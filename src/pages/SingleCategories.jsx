@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
-import { Route,Routes, useLocation, useNavigate } from 'react-router-dom';
-import { getCategoriesbyId, getAllCategories } from '../utils/calls';
+import { Route,Routes, useLocation } from 'react-router-dom';
+import { getAllCategories } from '../utils/calls';
 import CategorizedTasks from '../components/CategorizedTasks';
 import Plus from '../images/plus-icon.svg';
 import { getToken } from '../utils/common';
@@ -11,7 +11,6 @@ import EditForm from '../components/EditForm';
 const SingleCategories = ({categorylist, categories, setCategoryList}) => {
     const [loadedcategories, setLoadedCategories] = useState({})
     const [locate, setLocate] = useState(false);
-    const pathname = useLocation().pathname;
     const location = useLocation().pathname.split('/').pop();
     const [createlist, setCreateList] = useState(false);
     const [title, setTitle] = useState('');
@@ -23,7 +22,6 @@ const SingleCategories = ({categorylist, categories, setCategoryList}) => {
       description:description,
       dueDate:dueDate
     }
-    const [ctg, setCtg] = useState('');
     const today = new Date().toISOString().split("T")[0];
     
     useEffect(()=>{
