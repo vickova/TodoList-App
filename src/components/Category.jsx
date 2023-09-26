@@ -5,20 +5,26 @@ import Delete from '../images/delete-icon.svg';
 import Edit from '../images/edit-icon.svg';
 import { useNavigate } from 'react-router-dom';
 import { getCategoriesbyId } from '../utils/calls';
+import { DeleteCategory } from '../utils/calls';
 import { useDispatch, useSelector } from 'react-redux';
 
-const Category = ({categories, category, setCategoryList, categorylist}) => {
+const Category = ({categories, category, setCategoryList, open, setOpen, categlist, setCategList, setCategName}) => {
     const [toggle, setToggle] = useState(false);
     const navigate = useNavigate();
-    console.log(categories.id)
 
-    const buttonClickHandler = async (id)=>{
+    const buttonClickHandler = async (name)=>{
         setCategoryList({})
         console.log('happening')
-        const MovieData = await getCategoriesbyId(id);
+        const MovieData = await getCategoriesbyId(name._id);
         // dispatch(SingleCategory(MovieData))
+        setCategName(name.name);
         setCategoryList(MovieData);
-        navigate(`/categories/${id}`)
+        navigate(`/categories/${name._id}`)
+    }
+    const EditHandler = ()=>{
+        setOpen(!open);
+        setCategList(categories)
+        navigate(`/categories`)
     }
   return (
     <div className='single-task'>
@@ -36,10 +42,10 @@ const Category = ({categories, category, setCategoryList, categorylist}) => {
         
         <div className='buttons'>
             <div className='action-button'>
-                <img src={Edit} alt="edit-button" />
-                <img src={Delete} alt="delete-button" />
+                <img src={Edit} alt="edit-button" onClick={EditHandler}/>
+                <img src={Delete} alt="delete-button" onClick={()=>DeleteCategory(categories._id)}/>
             </div>
-            <button className='completed' onClick={()=>buttonClickHandler(categories._id)}>View</button>
+            <button className='completed' onClick={()=>buttonClickHandler(categories)}>View</button>
         </div>
         </Toggle>
     </div>

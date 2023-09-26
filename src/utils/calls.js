@@ -50,3 +50,15 @@ export async function getAllTasks(setLoadedTask) {
       console.log('Updated')
     }).catch((err)=>console.log('Something went wrong', err.message))
   }
+  
+  export const DeleteCategory = (id)=>{
+    console.log('Deleting')
+    
+    axios.delete(`https://todo-list-api-8vwz.onrender.com/api/v1/categories/${id}`,{headers:{'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`}})
+    .then((res)=>{
+      console.log(res.data)
+      console.log('Categories deleted')
+    }).catch((err)=>console.log('Something went wrong', err.message))
+  }
+  

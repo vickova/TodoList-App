@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import '../App.css';
 import Circle from '../components/Circle';
-import Button from '../components/Button';
 import Homeimage from '../images/todo8.png';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../components/Loader';
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getToken } from '../utils/common';
+import { ErrorToaster, Success } from '../components/Toast';
 
 const SignUp = () => {
   const [loading, setLoading] = useState(false)
@@ -20,26 +22,66 @@ const SignUp = () => {
 
   const handleSubmit = async(e)=>{
     setLoading(true);
+    const token = getToken()
     e.preventDefault();
     console.log('running oooo')
     if(name||email||password){
       if(password === confirm){
     axios.post('https://todo-list-api-8vwz.onrender.com/api/v1/auth/register', {name, email, password})
     .then((res)=>{
-      console.log(res.data)
+      if(res.request.status === 200||res.request.status === 201){
+      setLoading(false);
+      console.log(res.request.status);
+      Success('Redirecting...')
       navigate('/login');
-      setLoading(false)
-    }).catch((err)=>console.log('Something went wrong', err.message))
+      }
+      else{
+        ErrorToaster(res.response.data.msg)
+      console.log(res.response.data.msg);
+      console.log(token)
+      // console.log(res.data);
+      setLoading(false);
+      }
+      
+      
+    }).catch((err)=>{
+      console.log(err)}
+      )
   }
   else{
-    console.log('Password does not match');
+    toast.error('Password does not match', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Slide
+      });
+    console.log(token)
+    // console.log(res.data);
+    setLoading(false);
+    }
     setLoading(false)
-  }
+  
   }
   else{
     console.log('All fields must be filled');
-    setLoading(false)
-  }
+    toast.error('Please fill at fields', {
+      position: toast.POSITION.TOP_CENTER,
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      transition: Slide
+      });
+    console.log(token)
+    // console.log(res.data);
+    setLoading(false);
+    }
+    
+  
   }
   return (
     <div className='signup home'>
@@ -55,6 +97,18 @@ const SignUp = () => {
           <input type="password" placeholder='Create Password' required onChange={(e)=>setPassword(e.target.value)}/>
           <input type="password" placeholder='Re-write' required onChange={(e)=>setConfirm(e.target.value)}/>
           <div className='home-button'>
+          <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable={false}
+              pauseOnHover
+              theme="light"
+              />
             <button className="submit-btn" onClick={handleSubmit}>
               {!loading ? 'SignUp' : <Loader/>}
             </button>

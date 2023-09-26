@@ -1,12 +1,8 @@
 import React from 'react';
-import Close from '../images/close.svg'
 
-const EditForm = ({setDuedate, createCategoryTaskHandler, setDescription, createlist, setTitle, today, setCreateList}) => {
+const UpdateCategory = ({setDuedate, createCategoryTaskHandler, setDescription, createlist, setTitle, today}) => {
   return (
     <form className='create-task-form' style={{display:createlist?'block':'none'}} onSubmit={createCategoryTaskHandler}>
-      <div className='close'>
-          <img src={Close} alt="exit" onClick={()=>setCreateList(false)}/>
-        </div>
         <label htmlFor="title">Title</label>
         <input type="text" name='title' id='title' onChange={(e)=>setTitle(e.target.value)} required/>
         <label htmlFor="description">Description</label>
@@ -18,4 +14,4 @@ const EditForm = ({setDuedate, createCategoryTaskHandler, setDescription, create
   )
 }
 
-export default EditForm
+export default UpdateCategory

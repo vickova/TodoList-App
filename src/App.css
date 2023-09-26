@@ -1,11 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body{
-    background-color: rgb(234, 241, 244);
+    background-color: rgb(237, 239, 239);
     position: relative;
+    font-family: 'Roboto', sans-serif;
 }
 body::-webkit-scrollbar{
   width: 5px;
@@ -89,6 +92,7 @@ a{
   color: rgb(252, 249, 249);
   width: 80%;
   cursor: pointer;
+  outline: none;
 }
 .home-button{
   display: flex;
@@ -105,7 +109,7 @@ a{
 form{
   display: flex;
   justify-content: center;
-
+  position: relative;
 }
 form .inner{
   width: 100%;
@@ -172,7 +176,7 @@ input::placeholder{
   margin: .8rem 0;
 }
 .category h4{
-  background-color: rgba(255, 3, 49, 0.7);
+  background-color: rgba(255, 3, 49, 0.453);
   color: rgb(234, 241, 244);
   font-weight: 400;
   padding:.5rem;
@@ -227,8 +231,11 @@ input::placeholder{
 .intro{
   display: flex;
   justify-content: space-between;
+  gap:1rem;
   align-items: center;
-  margin: 1.5rem 1rem;
+  padding: 1rem 1rem;
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
 }
 .intro img{
   width: 25px;
@@ -246,11 +253,13 @@ input::placeholder{
   transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .intro h2{
+  font-size: 1.3rem;
   width: 50%;
   text-align: left;
 }
 nav ul{
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 nav ul li{
@@ -271,10 +280,15 @@ nav ul li{
   z-index:2;
   width: 100%;
   height: 100%;
+  top:0;
   left: 0;
   margin: 0 auto;
   background-color: beige;
-  padding: .5rem;
+  padding:1rem 1.5rem;
+}
+.close{
+  display: flex;
+  justify-content: flex-end;
 }
 .update-task .create-task-form{
   position: static;
@@ -314,7 +328,62 @@ nav ul li{
 .update-task form{
   display: block;
 }
-
+.avatar{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.avatar h4{
+  position: absolute;
+  right: 0;
+  bottom: -20px;
+}
+.avat{
+  width: 30px;
+  height: 30px;
+  background-image: url('./images/avatar.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 1px solid rgb(173, 216, 230);
+  border-radius: 50%;
+  color: transparent;
+  transition: all 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.avat:hover{
+  background-image: unset;
+  opacity: 1;
+  color: rgb(1, 1, 46);
+}
+.Toastify__toast-container{
+  position: absolute;
+  background-color: white;
+  padding: .5rem;
+  gap:1rem;
+  top:-10px;
+}
+.Toastify__progress-bar{
+  width: 100%;
+  height: 3px;
+  background-color: red;
+  display: block;
+}
+.Toastify__toast-body{
+  display: flex;
+  gap: 1rem;
+}
+.Toastify__close-button{
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-color: transparent;
+}
+.Toastify__toast-icon {
+  width: 20px;
+  height: 20px;
+}
 @media screen and (min-width:420px){
   .home{
     width: 45%;
@@ -326,8 +395,13 @@ nav ul li{
   .intro{
     width: 75%;
   margin: 1.5rem auto;
+  
+  }
+  .intro ul{
+    gap:3rem;
   }
   .tasks{
+    width: 60%;
     margin: auto;
     overflow: hidden;
   }

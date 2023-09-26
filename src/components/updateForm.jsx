@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getAllTasks } from '../utils/calls';
 import { getToken } from '../utils/common';
 
 const UpdateForm = ({update}) => {
@@ -12,7 +13,8 @@ const UpdateForm = ({update}) => {
     const [tog, setTog] = useState(false);
     const state = ['todo', 'in-progress', 'completed']
     const location = useLocation().pathname.split('/').pop();
-    const navigate = useNavigate();
+    const [path, setPath] = useState(useLocation().pathname);
+    const navigate = useNavigate()
     const token = getToken();
     const body = {
         title,
@@ -28,7 +30,10 @@ const UpdateForm = ({update}) => {
         'Authorization': `Bearer ${token}`}})
         .then((res)=>{
           console.log(res.data);
-          navigate('/tasks')
+          getAllTasks();
+          setPath((prev)=>prev)
+          console.log(path)
+          navigate(path);
         }).catch((err)=>console.log('Something went wrong', err.message))
         }
         else{
