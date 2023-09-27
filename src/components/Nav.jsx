@@ -3,6 +3,7 @@ import { useNavigate, redirect, useLocation } from 'react-router-dom';
 import '../App.css';
 import Avatar from '../images/avatar.svg';
 import { getUser } from '../utils/common';
+import { getAllCategories } from '../utils/calls';
 
 const Nav = () => {
   const navigate = useNavigate();

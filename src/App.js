@@ -17,7 +17,6 @@ function App() {
   const [individualcategories, setIndividualCategories] = useState({});
   const [loadedtask, setLoadedTask] = useState({});
   const [update, setUpdate] = useState({});
-  const [categlist, setCategList] = useState({})
   
   return (
     <div className="App">
@@ -28,8 +27,8 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/login' element={<Login loadedtask={loadedtask} setLoadedTask={setLoadedTask}/>}/>
         <Route path='/tasks/*' element={<Tasks loadedtask={loadedtask} setLoadedTask={setLoadedTask} setUpdate={setUpdate}/>}/>
-        <Route path='/tasks/:id' element={<UpdateForm update={update}/>}/>
-        <Route path='/categories/*' element={<Categories categlist={categlist} setCategList={setCategList} setUpdate={setUpdate} individualcategories={individualcategories} setIndividualCategories={setIndividualCategories}/>}/>
+        <Route path='/tasks/:id' element={<UpdateForm update={update} setLoadedTask/>}/>
+        <Route path='/categories/*' element={<Categories setUpdate={setUpdate} individualcategories={individualcategories} setIndividualCategories={setIndividualCategories}/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Routes>
       </React.Suspense>

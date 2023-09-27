@@ -1,14 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
 }
 body{
     background-color: rgb(237, 239, 239);
     position: relative;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 body::-webkit-scrollbar{
   width: 5px;
@@ -279,11 +280,10 @@ nav ul li{
   position: absolute;
   z-index:2;
   width: 100%;
-  height: 100%;
   top:0;
   left: 0;
   margin: 0 auto;
-  background-color: beige;
+  background-color: rgb(237, 239, 239);
   padding:1rem 1.5rem;
 }
 .close{
@@ -294,6 +294,8 @@ nav ul li{
   position: static;
 }
 .create-task-form input, .create-task-form textarea{
+  background-color: rgba(209, 213, 216, 0.861);
+  color: rgb(88, 87, 87);
   box-sizing: border-box;
   margin: .5rem 0;
   font-size: 1rem;
@@ -302,9 +304,9 @@ nav ul li{
   width: 100%;
 }
 .create-task-form textarea{
-  background-color: rgba(212, 217, 219, 0.508);
   border-radius: 10px;
   padding: 1rem;
+  font-family: 'Open Sans', sans-serif;
 }
 .create-task-form button{
   width: 100%;

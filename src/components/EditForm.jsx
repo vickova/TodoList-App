@@ -1,7 +1,37 @@
-import React from 'react';
-import Close from '../images/close.svg'
+import React, {useState} from 'react';
+import Close from '../images/close.svg';
+import { getToken } from '../utils/common';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
-const EditForm = ({setDuedate, createCategoryTaskHandler, setDescription, createlist, setTitle, today, setCreateList}) => {
+const EditForm = ({createlist,setCreateList}) => {
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [dueDate, setDuedate] = useState('');
+    const today = new Date().toISOString().split("T")[0];
+    const location = useLocation().pathname.split('/').pop();
+    const token = getToken();
+    const body = {
+      title:title,
+      description:description,
+      dueDate:dueDate
+    }
+    
+    const createCategoryTaskHandler = (e)=>{
+      e.preventDefault();
+      console.log('running oooo')
+      if(body.title||body.description||body.dueDate){
+      axios.post(`https://todo-list-api-8vwz.onrender.com/api/v1/categories/${location}`, body, {headers:{'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`}})
+      .then((res)=>{
+        console.log(res.data)
+        setCreateList(false);
+      }).catch((err)=>console.log('Something went wrong', err.message))
+      }
+      else{
+        console.log('fields cannot be empty')
+      }
+    }
   return (
     <form className='create-task-form' style={{display:createlist?'block':'none'}} onSubmit={createCategoryTaskHandler}>
       <div className='close'>

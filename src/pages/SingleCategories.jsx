@@ -20,11 +20,7 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
     const token = getToken();
     const [name, setName] = useState(categlist?.name);
     const [desc, setDesc] = useState(categlist?.description);
-    const body = {
-      title:title,
-      description:description,
-      dueDate:dueDate
-    }
+    
     const update = {
       name:name,
       description:desc
@@ -41,25 +37,17 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
 
       const TasVal = Object.values(categorylist);
       const CatVal = Object.values(loadedcategories);
-      const createCategoryTaskHandler = (e)=>{
-        e.preventDefault();
-        console.log('running oooo')
-        if(body.title||body.description||body.dueDate){
-        axios.post(`https://todo-list-api-8vwz.onrender.com/api/v1/categories/${location}`, update, {headers:{'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`}})
-        .then((res)=>{
-          console.log(res.data)
-          setCreateList(false);
-        }).catch((err)=>console.log('Something went wrong', err.message))
-        }
-        else{
-          console.log('fields cannot be empty')
-        }
-      }
+      
       console.log(categName)
+      console.log(categlist)
+      console.log(categories)
   return (
     <div className='single-category-section'>
-      <EditForm setCreateList={setCreateList} today={today} createCategoryTaskHandler={createCategoryTaskHandler} setDescription={setDescription} setTitle={setTitle} setDuedate={setDuedate} createlist={createlist}/>
+      <div className='plus-icon'>
+          <h3>{`Your ${categories.name} Categories`}</h3>
+          <img src={Plus} alt="plus-icon" onClick={()=>setCreateList(!createlist)}/>
+      </div>
+      <EditForm setCreateList={setCreateList} today={today} setDescription={setDescription} setTitle={setTitle} setDuedate={setDuedate} createlist={createlist}/>
     <div className='tasks' style={{opacity:createlist?'0.5':'1'}}>
         <div className='task-cover'>
         {
@@ -77,17 +65,9 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
         }
         </div>
     </div>
-    <Routes>
-    <Route path='/:taskid'/>
-    </Routes>
+
     </div>
   )
       }
 
 export default SingleCategories
-//     )
-//     }
-  
-// }
-
-// export default SingleCategories

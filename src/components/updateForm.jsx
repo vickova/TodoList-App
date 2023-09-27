@@ -3,8 +3,10 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getAllTasks } from '../utils/calls';
 import { getToken } from '../utils/common';
+import Close from '../images/close.svg'
 
-const UpdateForm = ({update}) => {
+const UpdateForm = ({update, setLoadedTask}) => {
+  const [open, setOpen] = useState(false)
     const today = new Date().toISOString().split("T")[0];
     const [title, setTitle] = useState(update.title);
     const [description, setDescription] = useState(update.description);
@@ -33,7 +35,8 @@ const UpdateForm = ({update}) => {
           getAllTasks();
           setPath((prev)=>prev)
           console.log(path)
-          navigate(path);
+          navigate('/tasks')
+          getAllTasks(setLoadedTask)
         }).catch((err)=>console.log('Something went wrong', err.message))
         }
         else{
@@ -43,6 +46,9 @@ const UpdateForm = ({update}) => {
   return (
     <div className='update-task'>
     <form className='create-task-form' onSubmit={UpdatedHandler}>
+        <div className='close'>
+        <img src={Close} alt="exit" onClick={()=>setOpen(false)}/>
+        </div>
         <label htmlFor="title">Title</label>
         <input type="text" name='title' id='title' required value={title} onChange={(e)=>setTitle(e.target.value)}/>
         <label htmlFor="description">Description</label>

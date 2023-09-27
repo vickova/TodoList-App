@@ -51,7 +51,7 @@ const Tasks = ({loadedtask, setLoadedTask, setUpdate}) => {
         <div className='task-cover'>
         {
             Object.keys(loadedtask).map((task, i)=>{
-                return<SingleTask setUpdate={setUpdate} createtask={createtask} setCreateTask={setCreateTask} task={loadedtask[task]} key={i} category={CatVal.map((item)=>{
+                return<SingleTask setUpdate={setUpdate} setLoadedTask={setLoadedTask} createtask={createtask} setCreateTask={setCreateTask} task={loadedtask[task]} key={i} category={CatVal.map((item)=>{
                   if(item._id === TasVal[i].category){
                     return item.name
                   }
