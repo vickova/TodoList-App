@@ -17,6 +17,7 @@ function App() {
   const [individualcategories, setIndividualCategories] = useState({});
   const [loadedtask, setLoadedTask] = useState({});
   const [update, setUpdate] = useState({});
+  const [opener, setOpener] = useState(false)
   
   return (
     <div className="App">
@@ -26,8 +27,8 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/login' element={<Login loadedtask={loadedtask} setLoadedTask={setLoadedTask}/>}/>
-        <Route path='/tasks/*' element={<Tasks loadedtask={loadedtask} setLoadedTask={setLoadedTask} setUpdate={setUpdate}/>}/>
-        <Route path='/tasks/:id' element={<UpdateForm update={update} setLoadedTask/>}/>
+        <Route path='/tasks/*' element={<Tasks loadedtask={loadedtask} setLoadedTask={setLoadedTask} setUpdate={setUpdate} setOpener={setOpener} opener={opener}/>}/>
+        <Route path='/tasks/:id' element={<UpdateForm update={update} setLoadedTask={setLoadedTask} setOpener={setOpener} opener={opener}/>}/>
         <Route path='/categories/*' element={<Categories setUpdate={setUpdate} individualcategories={individualcategories} setIndividualCategories={setIndividualCategories}/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Routes>

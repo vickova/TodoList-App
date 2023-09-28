@@ -48,7 +48,6 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
           <img src={Plus} alt="plus-icon" onClick={()=>setCreateList(!createlist)}/>
       </div>
       <EditForm setCreateList={setCreateList} today={today} setDescription={setDescription} setTitle={setTitle} setDuedate={setDuedate} createlist={createlist}/>
-    <div className='tasks' style={{opacity:createlist?'0.5':'1'}}>
         <div className='task-cover'>
         {
             Object.keys(categorylist).map((task, i)=>{
@@ -64,7 +63,6 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
               })
         }
         </div>
-    </div>
 
     </div>
   )

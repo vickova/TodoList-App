@@ -325,6 +325,8 @@ nav ul li{
   align-items:"center";
 }
 .update-task{
+  width: 70%;
+  margin: 0 auto;
   height: 100vh;
 }
 .update-task form{

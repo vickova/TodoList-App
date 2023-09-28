@@ -6,7 +6,7 @@ import { getAllCategories, getAllTasks } from '../utils/calls';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-const Tasks = ({loadedtask, setLoadedTask, setUpdate}) => {
+const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
   const location = useLocation().pathname;
   const [loadedcategories, setLoadedCategories] = useState({})
   const token = getToken();
@@ -51,7 +51,7 @@ const Tasks = ({loadedtask, setLoadedTask, setUpdate}) => {
         <div className='task-cover'>
         {
             Object.keys(loadedtask).map((task, i)=>{
-                return<SingleTask setUpdate={setUpdate} setLoadedTask={setLoadedTask} createtask={createtask} setCreateTask={setCreateTask} task={loadedtask[task]} key={i} category={CatVal.map((item)=>{
+                return<SingleTask setOpener={setOpener} setUpdate={setUpdate} setLoadedTask={setLoadedTask} createtask={createtask} setCreateTask={setCreateTask} task={loadedtask[task]} key={i} category={CatVal.map((item)=>{
                   if(item._id === TasVal[i].category){
                     return item.name
                   }

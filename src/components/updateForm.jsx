@@ -5,7 +5,7 @@ import { getAllTasks } from '../utils/calls';
 import { getToken } from '../utils/common';
 import Close from '../images/close.svg'
 
-const UpdateForm = ({update, setLoadedTask}) => {
+const UpdateForm = ({update, setLoadedTask, setOpener, opener}) => {
   const [open, setOpen] = useState(false)
     const today = new Date().toISOString().split("T")[0];
     const [title, setTitle] = useState(update.title);
@@ -47,7 +47,7 @@ const UpdateForm = ({update, setLoadedTask}) => {
     <div className='update-task'>
     <form className='create-task-form' onSubmit={UpdatedHandler}>
         <div className='close'>
-        <img src={Close} alt="exit" onClick={()=>setOpen(false)}/>
+        <img src={Close} alt="exit" onClick={()=>navigate('/tasks')}/>
         </div>
         <label htmlFor="title">Title</label>
         <input type="text" name='title' id='title' required value={title} onChange={(e)=>setTitle(e.target.value)}/>

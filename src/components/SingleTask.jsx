@@ -9,12 +9,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import UpdateForm from './updateForm';
 
-const SingleTask = ({task, category, setUpdate}) => {
+const SingleTask = ({task, category, setUpdate, setOpener}) => {
     const [toggle, setToggle] = useState(false);
     const [tog, setTog] = useState(false);
     const [state, setState] = useState(task.status)
     const navigate = useNavigate();
     const UpdateTaskHandler = (task)=>{
+        setOpener(true)
         setUpdate(task);
         navigate(`/tasks/${task._id}`)
     }
