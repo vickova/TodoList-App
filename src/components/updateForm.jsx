@@ -13,7 +13,7 @@ const UpdateForm = ({update, setLoadedTask, setOpener, opener}) => {
     const [date, setDate] = useState(update?.dueDate);
     const [status, setStatus] = useState(update?.status);
     const [tog, setTog] = useState(false);
-    const state = ['todo', 'in-progress', 'completed']
+    const state = ['todo', 'in-progress', 'completed'];
     const location = useLocation().pathname.split('/').pop();
     const [path, setPath] = useState(useLocation().pathname);
     const navigate = useNavigate()
@@ -56,7 +56,7 @@ const UpdateForm = ({update, setLoadedTask, setOpener, opener}) => {
         <div className='buttons'>
             <div>
                 <label htmlFor="date">Due Date</label>
-                <input type="date" min={today} id='date' required value={date.split("T")[0]} onChange={(e)=>setDate(e.target.value)} style={{margin:"0px"}}/>
+                <input type="date" min={today} id='date' required value={date?.split("T")[0]} onChange={(e)=>setDate(e.target.value)} style={{margin:"0px"}}/>
             </div>
             <div name="status" id="status" onClick={()=>setTog(!tog)}>
                     <p style={{backgroundColor:`${status === 'in-progress'?'rgb(223, 132, 6)':status==='completed'?'rgb(6, 141, 74)':'rgb(87, 83, 83)'}`}}>{status}</p>

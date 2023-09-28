@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
+  const status = ['todo', 'in-progress', 'completed'];
   const location = useLocation().pathname;
   const [loadedcategories, setLoadedCategories] = useState({})
   const token = getToken();
@@ -46,7 +47,16 @@ const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
   const CatVal = Object.values(loadedcategories);
   return (
     <div className='tasks'>
+      <div>
       <p style={{fontWeight:'500', marginBottom:'.5rem', fontSize:'1.2rem'}}>Welcome <b>{`${initials}`}</b>, here are your tasks</p>
+      <div className='task-state'>
+        {
+          loadedtask?status.map((item, i)=>{
+            return <button key={i} style={{backgroundColor:`${item === 'in-progress'?'rgb(223, 132, 6)':item==='completed'?'rgb(6, 141, 74)':'rgb(87, 83, 83)'}`}}>{item}</button>
+          }):<></>
+        }
+      </div>
+      </div>
       {TasVal.length!==0?
         <div className='task-cover'>
         {

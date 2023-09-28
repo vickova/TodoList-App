@@ -95,6 +95,19 @@ a{
   cursor: pointer;
   outline: none;
 }
+.task-state{
+  display: flex;
+  gap: .5rem;
+  margin: 2rem 0 1rem 0;
+  font-family: 'Open Sans', sans-serif;
+}
+.task-state button{
+  padding: .5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  color: rgb(252, 249, 249);
+  cursor: pointer;
+}
 .home-button{
   display: flex;
   justify-content: center;
@@ -145,7 +158,6 @@ input::placeholder{
   gap:.5rem;
 } */
 .single-task{
-  background-color: rgb(251, 252, 252);
   padding: 1rem;
   border-radius: 10px;
   margin: .5rem 0;

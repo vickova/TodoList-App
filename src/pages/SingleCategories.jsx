@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Route,Routes, useLocation } from 'react-router-dom';
-import { getAllCategories } from '../utils/calls';
+import { getAllCategories, getCategoriesbyId } from '../utils/calls';
 import Plus from '../images/plus-icon.svg';
 import { getToken } from '../utils/common';
 import axios from 'axios';
@@ -26,7 +26,13 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
       description:desc
     }
     const today = new Date().toISOString().split("T")[0];
-    
+    useEffect(()=>{
+      const AllCategories = async()=>{
+        const GetAllCategories = await getCategoriesbyId(location);
+        return GetAllCategories
+      }
+      AllCategories();
+    },[location])
     useEffect(()=>{
         const AllCategories = async()=>{
           const GetAllCategories = await getAllCategories(setLoadedCategories);
@@ -35,6 +41,8 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
         AllCategories();
       },[])
 
+
+      
       const TasVal = Object.values(categorylist);
       const CatVal = Object.values(loadedcategories);
       

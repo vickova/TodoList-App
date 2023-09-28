@@ -20,7 +20,7 @@ const SingleTask = ({task, category, setUpdate, setOpener}) => {
         navigate(`/tasks/${task._id}`)
     }
   return (
-    <div className='single-task' style={{backgroundColor:`${state === 'in-progress'?'rgba(254, 154, 15, 0.176)':state==='completed'?'rgba(4, 251, 127, 0.102)':'rgba(255, 3, 49, 0.102)'}`}}>
+    <div className='single-task' style={{backgroundColor:`${state === 'in-progress'?'rgba(254, 154, 15, 0.176)':state==='completed'?'rgba(4, 251, 127, 0.102)':'rgba(57, 56, 56, 0.196)'}`}}>
         <div className='toggle' onClick={()=>setToggle(!toggle)}>
             <div>
                 <h3>{task.title}</h3>
