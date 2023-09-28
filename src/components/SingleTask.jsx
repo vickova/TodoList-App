@@ -9,7 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
 import UpdateForm from './updateForm';
 
-const SingleTask = ({task, category, setUpdate, setOpener}) => {
+const SingleTask = ({task, category, setUpdate, setOpener, currentstate}) => {
     const [toggle, setToggle] = useState(false);
     const [tog, setTog] = useState(false);
     const [state, setState] = useState(task.status)
@@ -20,7 +20,7 @@ const SingleTask = ({task, category, setUpdate, setOpener}) => {
         navigate(`/tasks/${task._id}`)
     }
   return (
-    <div className='single-task' style={{backgroundColor:`${state === 'in-progress'?'rgba(254, 154, 15, 0.176)':state==='completed'?'rgba(4, 251, 127, 0.102)':'rgba(57, 56, 56, 0.196)'}`}}>
+    <div className='single-task' style={{backgroundColor:`${state === 'in-progress'||currentstate==='in-progress'?'rgba(254, 154, 15, 0.176)':state==='completed'||currentstate==='completed'?'rgba(4, 251, 127, 0.102)':task.status==='todo'||currentstate==='todo'?'rgba(57, 56, 56, 0.196)':''}`}}>
         <div className='toggle' onClick={()=>setToggle(!toggle)}>
             <div>
                 <h3>{task.title}</h3>
