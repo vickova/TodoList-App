@@ -9,7 +9,7 @@ import Plus from '../images/plus-icon.svg'
 import Loader from '../components/Loader';
 import Close from '../images/close.svg';
 
-const Categories = ({auth, setID, ID, individualcategories, setIndividualCategories, setUpdate}) => {
+const Categories = ({auth, setID, ID, individualcategories, setIndividualCategories, setUpdate, opener, setOpener}) => {
   const [categlist, setCategList] = useState({})
   console.log(categlist)
   const [open, setOpen] = useState(false);
@@ -28,11 +28,15 @@ const Categories = ({auth, setID, ID, individualcategories, setIndividualCategor
     }
   
    useEffect(()=>{
+    if(!sessionStorage.getItem("token")){
+      navigate("/login");
+    }else{
     const AllCategories = async()=>{
       const GetAllCategories = await getAllCategories(setLoadedCategories);
       return GetAllCategories
     }
     AllCategories();
+  }
   },[])
 
   const createCategoryTaskHandler = (e)=>{
@@ -77,7 +81,7 @@ const Categories = ({auth, setID, ID, individualcategories, setIndividualCategor
         <div className='task-cover'>
         {loadedcategories?
             Object.keys(loadedcategories).map((task, i)=>{
-                return<IndividualCategories categlist={categlist} setCategList={setCategList} open={open} setOpen={setOpen} setUpdate={setUpdate} categories={loadedcategories[task]} loadedcategories={loadedcategories} setLoadedCategories={setLoadedCategories} key={i} setID={setID} ID={ID} setIndividualCategories={setIndividualCategories}/>
+                return<IndividualCategories categlist={categlist} setCategList={setCategList} setOpener={setOpener} opener={opener} open={open} setOpen={setOpen} setUpdate={setUpdate} categories={loadedcategories[task]} loadedcategories={loadedcategories} setLoadedCategories={setLoadedCategories} key={i} setID={setID} ID={ID} setIndividualCategories={setIndividualCategories}/>
             }):<Loader/>
         }
         </div>

@@ -9,6 +9,7 @@ import axios from 'axios';
 const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
   const status = ['all','todo', 'in-progress', 'completed'];
   const [currentstate, setCurrentState] = useState('');
+  const [filtered, setFiltered] = useState({})
   const location = useLocation().pathname;
   const [loadedcategories, setLoadedCategories] = useState({})
   const token = getToken();
@@ -45,15 +46,18 @@ const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
   
   },[])
   useEffect(()=>{
-    if(currentstate === 'all'){
+    if(currentstate ==='all'){
+      setFiltered(loadedtask);
       getAllTasks(setLoadedTask)
-    }
       navigate('/tasks')
+    }else{
+      getAllTasks(setLoadedTask)
     const tasked = Object.values(loadedtask).filter((item)=>item.status === currentstate)
     setLoadedTask(Object.assign(tasked))
     console.log(tasked);
+    console.log(filtered.length)
     console.log(currentstate)
-  
+    }
   }, [currentstate])
   const TasVal = Object.values(loadedtask);
   const CatVal = Object.values(loadedcategories);

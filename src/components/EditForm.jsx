@@ -3,8 +3,9 @@ import Close from '../images/close.svg';
 import { getToken } from '../utils/common';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { getCategoriesbyId } from '../utils/calls';
 
-const EditForm = ({createlist,setCreateList}) => {
+const EditForm = ({createlist,setCreateList, setCategoryList}) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [dueDate, setDuedate] = useState('');
@@ -26,6 +27,8 @@ const EditForm = ({createlist,setCreateList}) => {
       .then((res)=>{
         console.log(res.data)
         setCreateList(false);
+      setCategoryList(getCategoriesbyId(location));
+
       }).catch((err)=>console.log('Something went wrong', err.message))
       }
       else{

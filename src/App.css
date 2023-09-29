@@ -159,6 +159,7 @@ input::placeholder{
   gap:.5rem;
 } */
 .single-task{
+  background-color:rgb(247, 251, 251);
   padding: 1rem;
   border-radius: 10px;
   margin: .5rem 0;
@@ -337,11 +338,7 @@ nav ul li{
   direction:row;
   align-items:"center";
 }
-.update-task{
-  width: 70%;
-  margin: 0 auto;
-  height: 100vh;
-}
+
 .update-task form{
   display: block;
 }
@@ -408,6 +405,11 @@ nav ul li{
     border-radius: 10px;
     padding:0 3rem 1.5rem 3rem;
     margin: 2rem auto;
+  }
+  .update-task{
+    width: 70%;
+    margin: 0 auto;
+    height: 100vh;
   }
   .intro{
     width: 75%;

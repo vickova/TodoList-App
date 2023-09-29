@@ -29,7 +29,7 @@ function App() {
         <Route path='/login' element={<Login loadedtask={loadedtask} setLoadedTask={setLoadedTask}/>}/>
         <Route path='/tasks/*' element={<Tasks loadedtask={loadedtask} setLoadedTask={setLoadedTask} setUpdate={setUpdate} setOpener={setOpener} opener={opener}/>}/>
         <Route path='/tasks/:id' element={<UpdateForm update={update} setLoadedTask={setLoadedTask} setOpener={setOpener} opener={opener}/>}/>
-        <Route path='/categories/*' element={<Categories setUpdate={setUpdate} individualcategories={individualcategories} setIndividualCategories={setIndividualCategories}/>}/>
+        <Route path='/categories/*' exact element={<Categories setOpener={setOpener} opener={opener} setUpdate={setUpdate} individualcategories={individualcategories} setIndividualCategories={setIndividualCategories}/>}/>
         <Route path='*' element={<Notfound/>}/>
       </Routes>
       </React.Suspense>
