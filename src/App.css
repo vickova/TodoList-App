@@ -28,11 +28,16 @@ body::-webkit-scrollbar-thumb{
   padding: 1rem;
   background-color: rgb(234, 241, 244);
   margin: 0 auto;
+  overflow: hidden;
 }
-
+.home-text{
+  margin-top: -30px;
+}
 .home-image{
   display: flex;
   justify-content: right;
+  position: relative;
+  top: -30px;
 }
 .signup .home-image, .login .homeimage, .home .home-image{
   position: relative;
@@ -49,6 +54,8 @@ a{
 .signup h2, .login h2{
   color: rgb(3, 131, 159);
   text-align: left;
+  font-size: 1.2rem;
+  margin: 0;
 }
 .home p{
   font-weight: 500;
@@ -65,9 +72,11 @@ a{
   cursor: pointer;
 }
 .circle-cover{
-  display: absolute;
+  position: relative;
   height: fit-content;
-  height: 200px;
+  height: 100px;
+  top: -20px;
+  left: -20px;
 }
 .circle{
   height: 150px;
@@ -130,7 +139,7 @@ form .inner{
   width: 100%;
 }
 form input{
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   font-size: 1rem;
 }
 input{
@@ -196,6 +205,10 @@ input::placeholder{
   font-weight: 400;
   padding:.5rem;
   border-radius: 5px;
+  font-size: .8rem;
+}
+.category p{
+  font-size: .8rem;
 }
 .buttons{
   justify-content: space-between;
@@ -286,8 +299,19 @@ nav ul li{
   justify-content: space-between;
   padding: .5rem 1rem;
 }
-.single-category{
+.single-category-section{
   position: relative;
+}
+.categorized-tasks{
+  position: fixed;
+  top: 85px;
+  right: 0;
+  left: auto;
+  height: 100vh;
+  width: 100%;
+margin: 0 auto;
+  background-color: rgb(237, 239, 239);
+
 }
 .create-task-form{
   box-sizing: border-box;
@@ -299,6 +323,11 @@ nav ul li{
   margin: 0 auto;
   background-color: rgb(237, 239, 239);
   padding:1rem 1.5rem;
+}
+
+.categorized-tasks .task-cover, .categorized-tasks .plus-icon{
+  width: 90%;
+  margin: 0 auto;
 }
 .close{
   display: flex;
@@ -404,13 +433,40 @@ nav ul li{
     box-shadow: 2px 2px 5px 5px rgb(198, 234, 246);
     border-radius: 10px;
     padding:0 3rem 1.5rem 3rem;
-    margin: 2rem auto;
+    margin: 1rem auto;
   }
   .update-task{
     width: 70%;
     margin: 0 auto;
     height: 100vh;
   }
+  .circle-cover{
+    height: 150px;
+  }
+  .signup h2, .login h2{
+    font-size: 1.5rem;
+  }
+  .categorized-tasks{
+    padding-top: 5rem;
+  }
+  .categorized-tasks .task-cover, .categorized-tasks .plus-icon{
+    width: 55%;
+    margin: 0 auto;
+  }
+  .category, .dates, .buttons{
+    display: flex;
+    align-items: center;
+    /* gap:1rem;
+    margin: .8rem 0; */
+  }
+  .category h4, .category p{
+    font-size: 1rem;
+  }
+  form input{
+    margin: 1.5rem 0;
+    font-size: 1rem;
+  }
+  
   .intro{
     width: 75%;
   margin: 1.5rem auto;

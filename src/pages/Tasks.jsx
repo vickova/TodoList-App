@@ -27,7 +27,6 @@ const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
     let initials = ''
     if(location!=='/login'|| location!=='/signup'){
     initials = user?.name.split(' ')[0];
-    console.log(initials)
     }
 
    useEffect(()=>{
@@ -54,9 +53,7 @@ const Tasks = ({loadedtask, setLoadedTask, setUpdate, setOpener}) => {
       getAllTasks(setLoadedTask)
     const tasked = Object.values(loadedtask).filter((item)=>item.status === currentstate)
     setLoadedTask(Object.assign(tasked))
-    console.log(tasked);
-    console.log(filtered.length)
-    console.log(currentstate)
+
     }
   }, [currentstate])
   const TasVal = Object.values(loadedtask);

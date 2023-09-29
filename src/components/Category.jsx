@@ -9,6 +9,7 @@ import { DeleteCategory, DeleteSingleTask } from '../utils/calls';
 import { useDispatch, useSelector } from 'react-redux';
 import { ErrorToaster, Success } from './Toast';
 import axios from 'axios';
+import SingleCategories from '../pages/SingleCategories';
 import { ToastContainer} from 'react-toastify';
 import { getToken } from '../utils/common';
 import { getAllCategories } from '../utils/calls';
@@ -25,8 +26,6 @@ const Category = ({categories, category, setCategoryList,categlist, open, setOpe
         description:desc
       }
     const buttonClickHandler = async (name)=>{
-        setCategoryList({})
-        console.log('happening')
         const MovieData = await getCategoriesbyId(name._id);
         // dispatch(SingleCategory(MovieData))
         setCategName(name.name);
@@ -35,17 +34,14 @@ const Category = ({categories, category, setCategoryList,categlist, open, setOpe
     }
     const EditHandler = (singlecateg)=>{
         navigate(`/categories/${singlecateg._id}`)
-        console.log(singlecateg)
         setOpen(!open);
         setCategList(singlecateg);
         setName(singlecateg?.name);
-        console.log(singlecateg.name);
         setDesc(singlecateg?.description);
         navigate('/categories')
     }
     const Deleter = async(id)=>{
         const lists = await getCategoriesbyId(id);
-        console.log(lists.tasks.length)
             const deletedTasks = lists?.tasks.map((item)=>DeleteSingleTask(item._id));
             if(deletedTasks){
             DeleteCategory(id);
@@ -53,16 +49,12 @@ const Category = ({categories, category, setCategoryList,categlist, open, setOpe
             console.log('deleted')
     }
     const UpdatedCategoryHandler = (e)=>{
-        console.log(categlist)
         e.preventDefault();
-        console.log('updating categ oooo')
         if(name||desc){
         axios.patch(`https://todo-list-api-8vwz.onrender.com/api/v1/categories/${categories._id}`, update, {headers:{'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`}})
         .then((res)=>{
         getAllCategories(setLoadedCategories).then((res)=>res);
-          console.log(res.data);
-          console.log(categlist)
           navigate(`/categories/tasks`)
           setOpen(false);
           navigate('/categories')
@@ -85,7 +77,7 @@ const Category = ({categories, category, setCategoryList,categlist, open, setOpe
 
         <button onClick={()=>console.log(update)}>Update</button>
       </form>
-        <div className='toggle' onClick={()=>setToggle(!toggle)}>
+        <div className='toggle' onClick={()=>{setToggle(!toggle); getAllCategories(setLoadedCategories)}}>
             <div>
                 <h3>{categories.name}</h3>
                 <div className='category'>
@@ -118,6 +110,7 @@ const Category = ({categories, category, setCategoryList,categlist, open, setOpe
             <button className='completed' onClick={()=>buttonClickHandler(categories)}>View</button>
         </div>
         </Toggle>
+        
     </div>
   )
 }

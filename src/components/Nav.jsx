@@ -11,7 +11,6 @@ const Nav = () => {
   const [open, setOpen] = useState(false)
   let initials = ''
   // const user = getUser();
-  console.log(location)
   // if(location!=='/login'|| location!=='/signup'){
   //   initials = user?.name.split(' ').map((item)=>item[0]);
   //   initials = initials?.join('')

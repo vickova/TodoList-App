@@ -27,7 +27,6 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
     }
     const today = new Date().toISOString().split("T")[0];
     useEffect(()=>{
-      console.log(sessionStorage.getItem("token"))
       if(!sessionStorage.getItem("token")){
         navigate("/login");
       }else{
@@ -49,16 +48,12 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
 
 
       
-      const TasVal = Object.values(categorylist);
       const CatVal = Object.values(loadedcategories);
-      
-      console.log(categName)
-      console.log(categlist)
-      console.log(categories)
+
   return (
-    <div className='single-category-section'>
+    <div className='single-category-section categorized-tasks'>
       <div className='plus-icon'>
-          <h3>{`Your ${categories.name} Categories`}</h3>
+          <h3>{`Your ${categName} Categories`}</h3>
           <img src={Plus} alt="plus-icon" onClick={()=>setCreateList(!createlist)}/>
       </div>
       <EditForm setCategoryList={setCategoryList} setCreateList={setCreateList} today={today} setDescription={setDescription} setTitle={setTitle} setDuedate={setDuedate} createlist={createlist}/>
@@ -67,11 +62,7 @@ const SingleCategories = ({categorylist, categories, setUpdate, categlist, categ
             Object.keys(categorylist).map((task, i)=>{
                 return categorylist[task].map((item, j)=>{
                   if(item.category === location){
-                    return <SingleTask setOpener={setOpener} opener={opener} setUpdate={setUpdate} setCategoryList={setCategoryList} setLocate={setLocate} task={item} key={j} category={CatVal.map((item)=>{
-                      if(item._id === TasVal[0][i].category){
-                        return item.name
-                      }
-                      })}/>
+                    return <SingleTask setOpener={setOpener} opener={opener} setUpdate={setUpdate} setCategoryList={setCategoryList} setLocate={setLocate} task={item} key={j} category={categName}/>
                 }
                 })
               })

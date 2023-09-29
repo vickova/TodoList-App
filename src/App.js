@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './Home';
+import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Nav from './components/Nav';

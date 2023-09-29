@@ -1,19 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import '../App.css'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Route, Routes } from 'react-router-dom';
 import { getToken } from '../utils/common';
 import { getAllCategories } from '../utils/calls';
-import IndividualCategories from '../components/IndividualCategories';
+import SingleCategories from './SingleCategories';
 import axios from 'axios';
 import Plus from '../images/plus-icon.svg'
 import Loader from '../components/Loader';
 import Close from '../images/close.svg';
+import Category from '../components/Category';
 
-const Categories = ({auth, setID, ID, individualcategories, setIndividualCategories, setUpdate, opener, setOpener}) => {
+const Categories = ({setUpdate, opener, setOpener}) => {
   const [categlist, setCategList] = useState({})
-  console.log(categlist)
+  const [categorylist, setCategoryList] = useState({});
+  const [categories, setCategories] = useState({})
+  const [categName, setCategName] = useState('');
   const [open, setOpen] = useState(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation().pathname.split('/').pop();
   const [loadedtask, setLoadedTask] = useState({})
   const [loadedcategories, setLoadedCategories] = useState({});
   const [createlist, setCreateList] = useState(false);
@@ -28,15 +32,11 @@ const Categories = ({auth, setID, ID, individualcategories, setIndividualCategor
     }
   
    useEffect(()=>{
-    if(!sessionStorage.getItem("token")){
-      navigate("/login");
-    }else{
     const AllCategories = async()=>{
       const GetAllCategories = await getAllCategories(setLoadedCategories);
       return GetAllCategories
     }
     AllCategories();
-  }
   },[])
 
   const createCategoryTaskHandler = (e)=>{
@@ -46,7 +46,6 @@ const Categories = ({auth, setID, ID, individualcategories, setIndividualCategor
     axios.post(`https://todo-list-api-8vwz.onrender.com/api/v1/categories`, body, {headers:{'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`}})
     .then((res)=>{
-      console.log(res.data)
       setCreateList(false);
       navigate('/categories');
       getAllCategories(setLoadedCategories)
@@ -58,11 +57,10 @@ const Categories = ({auth, setID, ID, individualcategories, setIndividualCategor
   }
   
 
-  console.log(loadedcategories)
   return (
     <div className='single-category-section'>
       
-    <div className='tasks'>
+    <div className='tasks' style={{}}>
     <div className='plus-icon' onClick={()=>setCreateList(!createlist)} style={{display:`${pathname==='/categories'?'flex':'none'}`}}>
           <h3>Add new category</h3>
           <img src={Plus} alt="plus-icon"/>
@@ -81,11 +79,14 @@ const Categories = ({auth, setID, ID, individualcategories, setIndividualCategor
         <div className='task-cover'>
         {loadedcategories?
             Object.keys(loadedcategories).map((task, i)=>{
-                return<IndividualCategories categlist={categlist} setCategList={setCategList} setOpener={setOpener} opener={opener} open={open} setOpen={setOpen} setUpdate={setUpdate} categories={loadedcategories[task]} loadedcategories={loadedcategories} setLoadedCategories={setLoadedCategories} key={i} setID={setID} ID={ID} setIndividualCategories={setIndividualCategories}/>
+                return <Category key={i} setUpdate={setUpdate} categName={categName} setOpener={setOpener} opener={opener} setCategName={setCategName} open={open} setOpen={setOpen} categories={loadedcategories[task]} setCategoryList={setCategoryList} setCategList={setCategList} categorylist={categlist}/>
             }):<Loader/>
         }
         </div>
     </div>
+    <Routes>
+      <Route path='/:id/*' element={categorylist?<SingleCategories setOpener={setOpener} opener={opener} categName={categName} categlist={categlist} setCategList={setCategList} setUpdate={setUpdate} categories={categories} categorylist={categorylist} setCategoryList={setCategoryList}/>:<></>}/>
+    </Routes>
     </div>
   )
   }
