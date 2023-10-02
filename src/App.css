@@ -352,11 +352,6 @@ margin: 0 auto;
   padding: 1rem;
   font-family: 'Open Sans', sans-serif;
 }
-#new-category{
-  position: absolute;
-  justify-content: space-between;
-  top: 30px;
-}
 .create-task-form button{
   width: 100%;
   font-size: 1rem;
