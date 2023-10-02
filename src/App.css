@@ -161,6 +161,7 @@ input::placeholder{
   position: relative;
   padding: 1rem;
   margin: 0 auto;
+  min-height: 100vh;
 }
 /* .task-cover{
   display: grid;
@@ -350,6 +351,11 @@ margin: 0 auto;
   border-radius: 10px;
   padding: 1rem;
   font-family: 'Open Sans', sans-serif;
+}
+#new-category{
+  position: absolute;
+  justify-content: space-between;
+  top: 30px;
 }
 .create-task-form button{
   width: 100%;

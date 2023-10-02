@@ -61,7 +61,7 @@ const Categories = ({setUpdate, opener, setOpener}) => {
     <div className='single-category-section'>
       
     <div className='tasks' style={{}}>
-    <div className='plus-icon' onClick={()=>setCreateList(!createlist)} style={{display:`${pathname==='/categories'?'flex':'none'}`}}>
+    <div className='plus-icon' onClick={()=>setCreateList(!createlist)} style={{display:`${pathname==='/categories'?'flex':'none'},`, justifyContent:'space-between'}} id='new-category'>
           <h3>Add new category</h3>
           <img src={Plus} alt="plus-icon"/>
       </div>
